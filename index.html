@@ -1,0 +1,735 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>遊於藝～文藝復興在中正</title>
+    
+    <!-- React & ReactDOM -->
+    <script crossorigin src="https://unpkg.com/react@18/umd/react.development.js"></script>
+    <script crossorigin src="https://unpkg.com/react-dom@18/umd/react-dom.development.js"></script>
+    
+    <!-- Babel for JSX -->
+    <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+    
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    
+    <!-- Lucide Icons -->
+    <script src="https://unpkg.com/lucide@latest"></script>
+
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Serif+TC:wght@400;700&family=Noto+Sans+TC:wght@300;400;500;700&display=swap" rel="stylesheet">
+
+    <style>
+        body {
+            font-family: 'Noto Sans TC', sans-serif;
+            background-color: #f7f5f0; /* Parchment color */
+            color: #292524;
+        }
+        h1, h2, h3, h4, .serif-font {
+            font-family: 'Noto Serif TC', serif;
+        }
+        /* Custom Scrollbar */
+        ::-webkit-scrollbar {
+            width: 8px;
+        }
+        ::-webkit-scrollbar-track {
+            background: #e7e5e4;
+        }
+        ::-webkit-scrollbar-thumb {
+            background: #a8a29e;
+            border-radius: 4px;
+        }
+        ::-webkit-scrollbar-thumb:hover {
+            background: #78716c;
+        }
+        .fade-in {
+            animation: fadeIn 0.5s ease-in-out;
+        }
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        /* Classical Frame Effect */
+        .classical-frame {
+            border: 8px solid #78350f; /* amber-900 like */
+            border-style: ridge;
+            box-shadow: 
+                inset 0 0 20px rgba(0,0,0,0.5), /* Inner shadow for depth */
+                10px 10px 20px rgba(0,0,0,0.4); /* Outer drop shadow */
+            position: relative;
+            background: #fff;
+        }
+        .classical-frame::after {
+            content: '';
+            position: absolute;
+            top: -4px; left: -4px; right: -4px; bottom: -4px;
+            border: 1px solid #92400e; /* amber-700 */
+            pointer-events: none;
+        }
+    </style>
+</head>
+<body>
+    <div id="root"></div>
+
+    <script type="text/babel">
+        const { useState, useEffect } = React;
+
+        // Icons
+        const Icons = {
+            Menu: () => <i data-lucide="menu"></i>,
+            BookOpen: () => <i data-lucide="book-open"></i>,
+            Palette: () => <i data-lucide="palette"></i>,
+            Church: () => <i data-lucide="church"></i>,
+            Users: () => <i data-lucide="users"></i>,
+            Smile: () => <i data-lucide="smile"></i>,
+            HelpCircle: () => <i data-lucide="help-circle"></i>,
+            ChevronRight: () => <i data-lucide="chevron-right"></i>,
+            ChevronDown: () => <i data-lucide="chevron-down"></i>,
+            Play: () => <i data-lucide="play-circle"></i>,
+            Image: () => <i data-lucide="image"></i>,
+            Glasses: () => <i data-lucide="glasses"></i>
+        };
+
+        // Data Structure
+        const menuData = [
+            {
+                id: 'concept',
+                title: '策展理念',
+                icon: 'BookOpen',
+                content: {
+                    title: '光影漫入游於藝，中正迎來文藝興',
+                    type: 'text',
+                    body: [
+                        '在校園裡，一場跨越六百年的文明對話正悄然展開。「游於藝之文藝復興——中正國中穹頂玩藝特展」以藝術為舟、科技為槳，邀請師生與社區一同穿越時空，回到人文精神甦醒的年代。展覽以「光影漫入游於藝，中正迎來文藝興」為策展主題，將文藝復興的理性、創造與人文精神，引入當代校園學習現場，讓藝術不再只是被觀看，而是被經驗、被演繹、被再創作。',
+                        '一、穿越時空的蟲洞：穹頂降臨校園，學生走入美術館',
+                        '策展核心以「穿越時空的蟲洞」為概念，象徵知識與想像的跨世紀連結。展場復刻西元 1436 年震撼歐洲的建築創舉——義大利佛羅倫斯的聖母百花大教堂穹頂。師生以三角形紙板結構，依循幾何與工程原理組裝穹頂，致敬布魯內萊斯基以理性與創新完成的不可能任務。',
+                        '穹頂內部搭載 360 度投影，影像流轉間呈現「末日審判」的宏闊視野，觀者仰首凝望，彷彿置身翡冷翠。展區亦設置VR 體驗，學生戴上頭盔，瞬間走入巴黎羅浮宮，近距離鑑賞李奧納多・達文西的〈蒙娜麗莎的微笑〉，在虛實交織中，完成一趟跨國、跨時代的藝術巡禮。',
+                        '二、虛實互動的劇場：學生從鑑賞到共創的美感之旅',
+                        '「虛實學習的劇場」讓學習由被動欣賞轉為主動參與。展場重現〈最後的晚餐〉的空間情境，學生化身導覽者，帶領觀眾理解構圖、人物關係與情緒瞬間；接著，學生與觀眾分別揣摩耶穌與十二門徒的角色，展開一場即席行動劇。',
+                        '演出透過 360 攝影機全程紀錄，演後立即回到穹頂劇場內觀看自己的作品——聲光包覆、影像環繞，學習者在「演—看—思」的循環中，體驗沉浸式劇場的共創樂趣。藝術在此不再是結果，而是一段被共同生成的歷程。',
+                        '三、五感全開的學習：學生與大師跨世紀的心靈對話',
+                        '展覽最動人的風景，來自「學生與大師的對話」。學生先以導覽與角色扮演深化理解，再回到畫布前，以自己的視角重構〈最後的晚餐〉：同樣學習透視法，卻在用色、構圖與敘事上展現各自的生命經驗與創意巧思。',
+                        '另一展區則以〈蒙娜麗莎的微笑〉為起點，學生觀察表情、光影與心理層次，進而完成自畫像創作——性格、情緒與特徵被敏銳捕捉，線條與色彩交織出屬於當代少年的自我書寫。經典不再高懸牆上，而是成為啟發創作的對話者。',
+                        '策展理念與教育意義',
+                        '本展以「游於藝」為方法論，強調跨域整合與體驗式學習：建築幾何、影像科技、戲劇表演與美術創作彼此支撐，構成一座可進入、可演繹、可再造的學習場域。透過穹頂與投影、VR 與行動劇，學生在真實與虛擬之間反覆往返，培養觀察、理解、表達與創造的核心能力。',
+                        '當光影漫入校園，文藝復興不只是歷史名詞，而成為今日教育的活水——啟動理性、滋養人文、點燃創造。中正國中以「穹頂玩藝」為橋，讓大師的精神與學生的想像在此相遇，迎來屬於校園的文藝興盛時刻。',
+                        '策展人:王如杏 12.12.2025'
+                    ],
+                    //image: 'https://images.unsplash.com/photo-1596728328773-6f4e75d0234a?q=80&w=1000&auto=format&fit=crop'
+                }
+            },
+            {
+                id: 'guide',
+                title: '名畫導覽',
+                icon: 'Palette',
+                content: {
+                    title: '文藝復興名畫導覽',
+                    type: 'gallery',
+                    images: [
+                        { src: 'https://images.unsplash.com/photo-1578305698696-680c44ce4c2a?q=80&w=800&auto=format&fit=crop', desc: '維納斯的誕生 - 波提切利' },
+                        { src: 'https://images.unsplash.com/photo-1577720580479-7d839d829c73?q=80&w=800&auto=format&fit=crop', desc: '創世紀 - 米開朗基羅' },
+                        { src: 'https://images.unsplash.com/photo-1580136608079-72029d0de116?q=80&w=800&auto=format&fit=crop', desc: '雅典學院 - 拉斐爾' }
+                    ]
+                }
+            },
+            {
+                id: 'cathedral',
+                title: '聖母百花大教堂',
+                icon: 'Church',
+                subMenus: [
+                    {
+                        id: 'cathedral-dome',
+                        title: '聖母百花大教堂穹頂介紹',
+                        content: {
+                            title: '建築奇蹟：布魯內萊斯基的穹頂',
+                            type: 'photo-grid-2x2',
+                            body: '聖母百花大教堂的穹頂是文藝復興建築的象徵。菲利波·布魯內萊斯基在沒有鷹架的情況下，設計了這個雙層殼體結構，解決了當時建築界最大的難題。內部的壁畫《末日審判》則由瓦薩里和祖卡里繪製，氣勢滂薄。',
+                            // 已更新為您指定的檔案名稱，請確保 1.jpg, 2.jpg, 3.jpg, 4.jpg 與此網頁在同一資料夾
+                            images: [
+                                '1.jpg', 
+                                '2.jpg', 
+                                '3.jpg', 
+                                '4.jpg'
+                            ]
+                        }
+                    },
+                    {
+                        id: 'cathedral-theater',
+                        title: '中正百花教堂穹頂劇場全紀錄',
+                        content: {
+                            title: '校園裡的穹頂：全紀錄',
+                            type: 'video-grid',
+                            items: [
+                                { title: '縮時攝影：穹頂搭建過程', desc: '學生與老師共同合作，利用環保材質重現穹頂結構。' },
+                                { title: '沈浸式劇場體驗', desc: '在自製的穹頂下，進行的光影投射展演。' }
+                            ]
+                        }
+                    }
+                ]
+            },
+            {
+                id: 'last-supper',
+                title: '最後的晚餐',
+                icon: 'Users',
+                subMenus: [
+                    {
+                        id: 'supper-analysis',
+                        title: '畫作賞析',
+                        content: {
+                            title: '透視法的巔峰：最後的晚餐',
+                            type: 'text',
+                            body: [
+                                '達文西的這幅壁畫位於米蘭感恩聖母堂。他巧妙地利用單點透視法，將消失點集中在耶穌的右眼，讓所有視線都聚焦於主角。',
+                                '畫作捕捉了耶穌說出「你們之中有人要出賣我」的那一瞬間，十二門徒驚訝、恐慌、懷疑的表情栩栩如生。'
+                            ],
+                            image: 'https://upload.wikimedia.org/wikipedia/commons/thumb/4/4b/%C3%9Altima_Cena_-_Da_Vinci_5.jpg/1280px-%C3%9Altima_Cena_-_Da_Vinci_5.jpg'
+                        }
+                    },
+                    {
+                        id: 'supper-plan',
+                        title: '行動劇教案及教學實況',
+                        content: {
+                            title: '當名畫動起來：教學實況',
+                            type: 'text',
+                            body: [
+                                '本單元結合表演藝術課，讓學生分組分析畫中人物的肢體語言。',
+                                '透過「定格畫面」練習，學生必須揣摩猶大與彼得的心理狀態。'
+                            ],
+                            image: 'https://images.unsplash.com/photo-1506456209581-9b1685b5e1c0?q=80&w=1000&auto=format&fit=crop'
+                        }
+                    },
+                    {
+                        id: 'supper-students',
+                        title: '學生的戲劇錄影及照片',
+                        content: {
+                            title: '學生演繹：誰是背叛者？',
+                            type: 'video-grid',
+                            items: [
+                                { title: '七年級 A 班 - 現代版最後晚餐', desc: '將場景搬到學校食堂的創意改編。' },
+                                { title: '八年級 C 班 - 經典重現', desc: '考究的服裝與到位的表情管理。' }
+                            ]
+                        }
+                    },
+                    {
+                        id: 'supper-feedback',
+                        title: '師生的回饋訪談影音',
+                        content: {
+                            title: '課後省思與訪談',
+                            type: 'video-grid',
+                            items: [
+                                { title: '老師訪談', desc: '美感教育對學生觀察力的影響。' },
+                                { title: '學生心得', desc: '「扮演猶大的時候，我才真的理解那種焦慮。」' }
+                            ]
+                        }
+                    }
+                ]
+            },
+            {
+                id: 'mona-lisa',
+                title: '蒙娜麗莎的微笑',
+                icon: 'Smile',
+                subMenus: [
+                    {
+                        id: 'mona-analysis',
+                        title: '蒙娜麗莎的微笑畫作賞析',
+                        content: {
+                            title: '神秘的微笑與暈塗法',
+                            type: 'text',
+                            body: [
+                                '這幅畫最著名的是達文西使用的「暈塗法」（Sfumato），讓輪廓線模糊，創造出朦朧而生動的肌膚質感。',
+                                '背景的風景非寫實，而是一種理想化的自然景觀，與人物形成了神秘的連結。'
+                            ],
+                            image: 'https://upload.wikimedia.org/wikipedia/commons/thumb/e/ec/Mona_Lisa%2C_by_Leonardo_da_Vinci%2C_from_C2RMF_retouched.jpg/800px-Mona_Lisa%2C_by_Leonardo_da_Vinci%2C_from_C2RMF_retouched.jpg'
+                        }
+                    },
+                    {
+                        id: 'mona-creation',
+                        title: '學生再創畫作及簡介文字',
+                        content: {
+                            title: '蒙娜麗莎變裝秀',
+                            type: 'gallery',
+                            images: [
+                                { src: 'https://images.unsplash.com/photo-1550955295-a8d238f8287c?q=80&w=800&auto=format&fit=crop', desc: '戴耳機的蒙娜麗莎 - 學生創意作品' },
+                                { src: 'https://images.unsplash.com/photo-1579783900882-c0d3dad7b119?q=80&w=800&auto=format&fit=crop', desc: '動漫風蒙娜麗莎 - 數位繪圖' }
+                            ]
+                        }
+                    },
+                    {
+                        id: 'mona-vr',
+                        title: 'VR體驗走進羅浮宮',
+                        content: {
+                            title: '虛擬實境：與蒙娜麗莎面對面',
+                            type: 'mixed',
+                            body: '透過 VR 眼鏡，我們將教室瞬間變成法國羅浮宮的德農館。學生可以360度環視展廳，甚至可以「越過」防彈玻璃，近距離觀察畫作的裂紋與筆觸。',
+                            image: 'https://images.unsplash.com/photo-1622979135225-d2ba269fb1ac?q=80&w=1000&auto=format&fit=crop',
+                            isVR: true
+                        }
+                    }
+                ]
+            },
+            {
+                id: 'photos',
+                title: '照片紀實',
+                icon: 'Image',
+                content: {
+                    title: '精彩活動全紀錄',
+                    type: 'gallery',
+                    images: [
+                         { src: 'https://images.unsplash.com/photo-1544531586-fde5298cdd40?q=80&w=800&auto=format&fit=crop', desc: '穹頂搭建過程：學生團隊合作' },
+                         { src: 'https://images.unsplash.com/photo-1515634928627-2a4e0dae3ddf?q=80&w=800&auto=format&fit=crop', desc: '戲劇排練側拍：投入的角色揣摩' },
+                         { src: 'https://images.unsplash.com/photo-1506456209581-9b1685b5e1c0?q=80&w=800&auto=format&fit=crop', desc: '最後的晚餐：行動劇演出實況' },
+                         { src: 'https://images.unsplash.com/photo-1596728328773-6f4e75d0234a?q=80&w=1000&auto=format&fit=crop', desc: 'VR體驗課程：穿越時空' },
+                         { src: 'https://images.unsplash.com/photo-1577720580479-7d839d829c73?q=80&w=800&auto=format&fit=crop', desc: '成果發表會：學生創意作品展示' },
+                         { src: 'https://images.unsplash.com/photo-1520023030386-b48982c76d90?q=80&w=1000&auto=format&fit=crop', desc: '展場導覽實況：小小解說員' }
+                    ]
+                }
+            },
+            {
+                id: 'quiz',
+                title: '觀展後的小測驗',
+                icon: 'HelpCircle',
+                content: {
+                    type: 'quiz',
+                    title: '文藝復興達人挑戰賽'
+                }
+            }
+        ];
+
+        // Quiz Data
+        const quizQuestions = [
+            {
+                question: "文藝復興的發源地是哪個國家？",
+                options: ["法國", "義大利", "英國", "西班牙"],
+                correct: 1
+            },
+            {
+                question: "《最後的晚餐》中，達文西使用了什麼技巧來突顯耶穌的主角地位？",
+                options: ["暈塗法", "分離派", "單點透視法", "點描法"],
+                correct: 2
+            },
+            {
+                question: "聖母百花大教堂的巨大穹頂是由誰設計的？",
+                options: ["米開朗基羅", "拉斐爾", "布魯內萊斯基", "達文西"],
+                correct: 2
+            },
+            {
+                question: "蒙娜麗莎臉部柔和的陰影效果，使用了哪種繪畫技法？",
+                options: ["Sfumato (暈塗法)", "Chiaroscuro (明暗對照法)", "Impasto (厚塗法)", "Fresco (濕壁畫)"],
+                correct: 0
+            },
+            {
+                question: "「文藝復興 (Renaissance)」這個詞的原意是什麼？",
+                options: ["創新", "重生", "革命", "延續"],
+                correct: 1
+            },
+            {
+                question: "本次特展中，學生使用什麼材料來復刻聖母百花大教堂的穹頂？",
+                options: ["原木", "鋼筋水泥", "三角形紙板", "3D列印塑料"],
+                correct: 2
+            },
+            {
+                question: "下列哪一位大師 **不屬於** 「文藝復興美術三傑」？",
+                options: ["達文西", "米開朗基羅", "拉斐爾", "波提切利"],
+                correct: 3
+            },
+            {
+                question: "在中正國中的特展中，觀看《蒙娜麗莎的微笑》結合了哪種科技體驗？",
+                options: ["AR 擴增實境", "VR 虛擬實境", "AI 繪圖", "3D 列印"],
+                correct: 1
+            },
+            {
+                question: "《最後的晚餐》壁畫位於哪一座城市？",
+                options: ["羅馬", "佛羅倫斯", "威尼斯", "米蘭"],
+                correct: 3
+            },
+            {
+                question: "本次策展主題「光影漫入游於藝」的下一句是？",
+                options: ["校園充滿藝術風", "中正迎來新世紀", "中正迎來文藝興", "師生共創美好情"],
+                correct: 2
+            }
+        ];
+
+        // Components
+        const SidebarItem = ({ item, isActive, isExpanded, onClick, onSubClick, activeSubId }) => {
+            const Icon = Icons[item.icon] || Icons.BookOpen;
+            
+            return (
+                <div className="mb-2">
+                    <button 
+                        onClick={() => onClick(item)}
+                        className={`w-full flex items-center justify-between p-3 rounded-lg transition-all duration-300 ${isActive ? 'bg-amber-700 text-white shadow-lg' : 'hover:bg-stone-200 text-stone-700'}`}
+                    >
+                        <div className="flex items-center gap-3">
+                            <Icon />
+                            <span className="font-medium tracking-wide">{item.title}</span>
+                        </div>
+                        {item.subMenus && (
+                            <i data-lucide={isExpanded ? "chevron-down" : "chevron-right"}></i>
+                        )}
+                    </button>
+                    
+                    {/* Submenu */}
+                    {item.subMenus && isExpanded && (
+                        <div className="ml-4 mt-1 border-l-2 border-amber-200 pl-2 space-y-1 animate-[fadeIn_0.3s_ease-in-out]">
+                            {item.subMenus.map(sub => (
+                                <button
+                                    key={sub.id}
+                                    onClick={(e) => {
+                                        e.stopPropagation();
+                                        onSubClick(item, sub);
+                                    }}
+                                    className={`w-full text-left p-2 text-sm rounded transition-colors ${activeSubId === sub.id ? 'bg-amber-100 text-amber-900 font-bold' : 'text-stone-500 hover:text-amber-800'}`}
+                                >
+                                    {sub.title}
+                                </button>
+                            ))}
+                        </div>
+                    )}
+                </div>
+            );
+        };
+
+        const QuizComponent = () => {
+            // State to store shuffled questions
+            const [questions, setQuestions] = useState([]);
+            const [currentQ, setCurrentQ] = useState(0);
+            const [score, setScore] = useState(0);
+            const [showResult, setShowResult] = useState(false);
+            const [selectedOption, setSelectedOption] = useState(null);
+
+            // Initialize shuffled questions on mount
+            useEffect(() => {
+                setQuestions([...quizQuestions].sort(() => Math.random() - 0.5));
+            }, []);
+
+            const handleAnswer = (index) => {
+                setSelectedOption(index);
+                setTimeout(() => {
+                    // Check answer against the current question in the shuffled array
+                    if (index === questions[currentQ].correct) {
+                        setScore(s => s + 1);
+                    }
+                    if (currentQ < questions.length - 1) {
+                        setCurrentQ(q => q + 1);
+                        setSelectedOption(null);
+                    } else {
+                        setShowResult(true);
+                    }
+                }, 800);
+            };
+
+            const resetQuiz = () => {
+                setCurrentQ(0);
+                setScore(0);
+                setShowResult(false);
+                setSelectedOption(null);
+                // Re-shuffle questions on reset
+                setQuestions([...quizQuestions].sort(() => Math.random() - 0.5));
+            };
+
+            // Don't render until questions are loaded/shuffled
+            if (questions.length === 0) return null;
+
+            if (showResult) {
+                return (
+                    <div className="text-center p-8 bg-white rounded-xl shadow-md border border-stone-200">
+                        <i data-lucide="crown" className="w-16 h-16 mx-auto text-amber-500 mb-4"></i>
+                        <h3 className="text-2xl font-bold mb-4 serif-font">測驗完成！</h3>
+                        <p className="text-lg mb-6">你的得分是： <span className="text-amber-600 font-bold text-3xl">{score}</span> / {questions.length}</p>
+                        <div className="text-stone-600 mb-8">
+                            {score === questions.length ? "太厲害了！你是文藝復興大師！" : "再接再厲，文藝復興的奧秘等你探索！"}
+                        </div>
+                        <button onClick={resetQuiz} className="bg-amber-700 text-white px-6 py-2 rounded-full hover:bg-amber-800 transition">重新測驗</button>
+                    </div>
+                );
+            }
+
+            return (
+                <div className="max-w-2xl mx-auto bg-white p-6 rounded-xl shadow-md border border-stone-200">
+                    <div className="flex justify-between items-center mb-6 border-b pb-4">
+                        <span className="text-stone-500 font-bold">Question {currentQ + 1}/{questions.length}</span>
+                        <span className="bg-amber-100 text-amber-800 px-3 py-1 rounded-full text-xs font-bold">Score: {score}</span>
+                    </div>
+                    <h3 className="text-xl font-bold mb-6 serif-font leading-relaxed">{questions[currentQ].question}</h3>
+                    <div className="space-y-3">
+                        {questions[currentQ].options.map((opt, idx) => (
+                            <button
+                                key={idx}
+                                onClick={() => handleAnswer(idx)}
+                                disabled={selectedOption !== null}
+                                className={`w-full text-left p-4 rounded-lg border-2 transition-all ${
+                                    selectedOption === idx 
+                                        ? idx === questions[currentQ].correct 
+                                            ? 'bg-green-100 border-green-500 text-green-800'
+                                            : 'bg-red-100 border-red-500 text-red-800'
+                                        : 'border-stone-100 hover:border-amber-300 hover:bg-amber-50'
+                                }`}
+                            >
+                                {opt}
+                            </button>
+                        ))}
+                    </div>
+                </div>
+            );
+        };
+
+        const ContentDisplay = ({ data }) => {
+            // Check if data is null or undefined to prevent crash
+            if (!data) return <div className="p-10 text-center text-stone-400">請選擇一個項目</div>;
+
+            return (
+                <div className="fade-in max-w-4xl mx-auto">
+                    <h2 className="text-3xl font-bold mb-6 text-amber-900 serif-font border-b-2 border-amber-200 pb-3">{data.title}</h2>
+                    
+                    {data.type === 'text' && (
+                        <div className="bg-white p-6 rounded-xl shadow-sm border border-stone-100">
+                            {data.image && <img src={data.image} alt={data.title} className="w-full h-64 md:h-96 object-cover rounded-lg mb-6 shadow-md" />}
+                            <div className="prose prose-stone max-w-none text-lg leading-relaxed text-stone-700">
+                                {data.body.map((p, i) => <p key={i} className="mb-4">{p}</p>)}
+                            </div>
+                        </div>
+                    )}
+
+                    {/* Updated photo-grid-2x2 layout with classical frames */}
+                    {data.type === 'photo-grid-2x2' && (
+                        <div className="bg-white p-6 rounded-xl shadow-sm border border-stone-100 flex flex-col gap-8">
+                            <div className="grid grid-cols-2 gap-6 md:gap-8">
+                                {data.images.map((imgSrc, idx) => (
+                                    <div key={idx} className="relative group">
+                                        <div className="classical-frame p-2 bg-white transform transition duration-300 hover:scale-105 hover:z-10">
+                                             <img 
+                                                src={imgSrc} 
+                                                alt={`Dome Photo ${idx+1}`} 
+                                                className="w-full h-48 md:h-64 object-cover"
+                                                onError={(e) => {
+                                                    // Fallback just in case
+                                                    e.target.onerror = null; 
+                                                    e.target.src = 'https://images.unsplash.com/photo-1576016770956-debb63d92058?q=80&w=800&auto=format&fit=crop'; 
+                                                }}
+                                             />
+                                        </div>
+                                    </div>
+                                ))}
+                            </div>
+                            <div className="prose prose-stone max-w-none text-lg leading-relaxed text-stone-700">
+                                <p>{data.body}</p>
+                            </div>
+                        </div>
+                    )}
+
+                    {/* Legacy video-vertical in case used elsewhere */}
+                    {data.type === 'video-vertical' && (
+                        <div className="bg-white p-6 rounded-xl shadow-sm border border-stone-100 flex flex-col gap-6">
+                            <div className="w-full aspect-video rounded-lg shadow-md overflow-hidden bg-black">
+                                <iframe 
+                                    width="100%" 
+                                    height="100%" 
+                                    src={data.videoSrc} 
+                                    title="YouTube video player" 
+                                    frameBorder="0" 
+                                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" 
+                                    referrerPolicy="strict-origin-when-cross-origin" 
+                                    allowFullScreen
+                                ></iframe>
+                            </div>
+                            <div className="prose prose-stone max-w-none text-lg leading-relaxed text-stone-700">
+                                <p>{data.body}</p>
+                            </div>
+                        </div>
+                    )}
+
+                    {data.type === 'mixed' && (
+                        <div className="bg-white p-6 rounded-xl shadow-sm border border-stone-100 flex flex-col md:flex-row gap-6">
+                            <div className="md:w-1/2">
+                                {data.video ? (
+                                    <div className="w-full h-64 md:h-full rounded-lg shadow-md overflow-hidden bg-black">
+                                        <iframe 
+                                            className="w-full h-full"
+                                            src={data.video} 
+                                            title={data.title}
+                                            frameBorder="0" 
+                                            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
+                                            allowFullScreen
+                                        ></iframe>
+                                    </div>
+                                ) : (
+                                    <img src={data.image} alt={data.title} className="w-full h-full object-cover rounded-lg shadow-md" />
+                                )}
+                            </div>
+                            <div className="md:w-1/2 flex flex-col justify-center">
+                                <p className="text-lg leading-relaxed text-stone-700 mb-6">{data.body}</p>
+                                {data.isVR && (
+                                    <button className="flex items-center justify-center gap-2 bg-indigo-600 text-white py-3 px-6 rounded-lg hover:bg-indigo-700 transition shadow-lg">
+                                        <i data-lucide="glasses"></i>
+                                        啟動 VR 體驗模式
+                                    </button>
+                                )}
+                            </div>
+                        </div>
+                    )}
+
+                    {data.type === 'gallery' && (
+                        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+                            {data.images.map((img, i) => (
+                                <div key={i} className="group relative overflow-hidden rounded-xl shadow-md cursor-pointer">
+                                    <img src={img.src} alt={img.desc} className="w-full h-64 object-cover transition duration-500 group-hover:scale-110" />
+                                    <div className="absolute inset-0 bg-gradient-to-t from-black/70 to-transparent flex items-end p-4">
+                                        <p className="text-white font-medium">{img.desc}</p>
+                                    </div>
+                                </div>
+                            ))}
+                        </div>
+                    )}
+
+                    {data.type === 'video-grid' && (
+                        <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                            {data.items.map((video, i) => (
+                                <div key={i} className="bg-stone-800 rounded-xl overflow-hidden shadow-lg">
+                                    <div className="h-48 bg-black flex items-center justify-center relative group cursor-pointer">
+                                        <div className="absolute inset-0 bg-cover bg-center opacity-50" style={{backgroundImage: 'url(https://images.unsplash.com/photo-1536240478700-b869070f9279?q=80&w=1000&auto=format&fit=crop)'}}></div>
+                                        <i data-lucide="play-circle" className="w-16 h-16 text-white opacity-80 group-hover:opacity-100 group-hover:scale-110 transition relative z-10"></i>
+                                    </div>
+                                    <div className="p-4 bg-white">
+                                        <h4 className="font-bold text-lg mb-1">{video.title}</h4>
+                                        <p className="text-stone-500 text-sm">{video.desc}</p>
+                                    </div>
+                                </div>
+                            ))}
+                        </div>
+                    )}
+
+                    {data.type === 'quiz' && <QuizComponent />}
+                </div>
+            );
+        };
+
+        const App = () => {
+            const [activeId, setActiveId] = useState('concept');
+            const [activeSubId, setActiveSubId] = useState(null);
+            const [expandedMenu, setExpandedMenu] = useState('cathedral');
+            const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
+            const [visitCount, setVisitCount] = useState(1520);
+
+            useEffect(() => {
+                lucide.createIcons();
+            });
+
+            // Effect for counting visits
+            useEffect(() => {
+                const storedCount = localStorage.getItem('renaissance_visit_count');
+                // If stored, use it + 1, else start at 1520 (Renaissance vibe)
+                let newCount = storedCount ? parseInt(storedCount, 10) + 1 : 1520;
+                setVisitCount(newCount);
+                localStorage.setItem('renaissance_visit_count', newCount);
+            }, []);
+
+            useEffect(() => {
+                lucide.createIcons();
+            }, [activeId, activeSubId, expandedMenu, mobileMenuOpen]);
+
+            const handleMenuClick = (item) => {
+                if (item.subMenus) {
+                    setExpandedMenu(expandedMenu === item.id ? null : item.id);
+                    // Automatically select first sub-item if not already selected
+                    if (!activeSubId || !item.subMenus.find(sub => sub.id === activeSubId)) {
+                        setActiveSubId(item.subMenus[0].id);
+                        setActiveId(item.id);
+                    }
+                } else {
+                    setActiveId(item.id);
+                    setActiveSubId(null);
+                    setMobileMenuOpen(false);
+                }
+            };
+
+            const handleSubMenuClick = (parent, sub) => {
+                setActiveId(parent.id);
+                setActiveSubId(sub.id);
+                setMobileMenuOpen(false);
+            };
+
+            // Determine content to show
+            const activeItem = menuData.find(item => item.id === activeId);
+            let displayContent = activeItem?.content;
+
+            if (activeItem?.subMenus && activeSubId) {
+                const subItem = activeItem.subMenus.find(sub => sub.id === activeSubId);
+                if (subItem) displayContent = subItem.content;
+            }
+
+            return (
+                <div className="min-h-screen flex flex-col md:flex-row">
+                    
+                    {/* Mobile Header */}
+                    <div className="md:hidden bg-amber-800 text-white p-4 flex justify-between items-center sticky top-0 z-50 shadow-md">
+                        <span className="font-bold text-xl serif-font">遊於藝～文藝復興在中正</span>
+                        <button onClick={() => setMobileMenuOpen(!mobileMenuOpen)}>
+                            <i data-lucide="menu"></i>
+                        </button>
+                    </div>
+
+                    {/* Sidebar / Navigation */}
+                    <nav className={`
+                        fixed inset-0 z-40 bg-stone-100 transform transition-transform duration-300 ease-in-out
+                        md:relative md:translate-x-0 md:w-80 md:block border-r border-amber-200 overflow-y-auto
+                        ${mobileMenuOpen ? 'translate-x-0 pt-16' : '-translate-x-full md:pt-0'}
+                    `}>
+                        <div className="p-6">
+                            <h1 className="hidden md:block text-2xl font-bold text-amber-900 mb-8 serif-font border-b-2 border-amber-800 pb-4">
+                                遊於藝<br/>
+                                <span className="text-lg font-normal text-amber-700">文藝復興在中正</span>
+                            </h1>
+
+                            <div className="space-y-1">
+                                {menuData.map(item => (
+                                    <SidebarItem 
+                                        key={item.id} 
+                                        item={item} 
+                                        isActive={activeId === item.id}
+                                        isExpanded={expandedMenu === item.id}
+                                        activeSubId={activeSubId}
+                                        onClick={handleMenuClick}
+                                        onSubClick={handleSubMenuClick}
+                                    />
+                                ))}
+                            </div>
+
+                            {/* Visitor Counter */}
+                            <div className="mt-8 pt-6 border-t border-amber-200 text-center">
+                                <p className="text-stone-500 text-xs mb-2">累計參觀人次</p>
+                                <div className="inline-block bg-stone-800 text-amber-100 px-4 py-2 rounded font-mono text-lg shadow-inner tracking-widest border border-amber-600">
+                                    {visitCount.toLocaleString()}
+                                </div>
+                            </div>
+                        </div>
+                    </nav>
+
+                    {/* Main Content Area */}
+                    <main className="flex-1 p-6 md:p-10 bg-[#f7f5f0] overflow-y-auto h-screen">
+                        <ContentDisplay data={displayContent} />
+                        
+                        {/* Footer */}
+                        <div className="mt-12 pt-8 border-t border-stone-300 text-center text-stone-500 text-sm">
+                            <p>© 2025 新北市中正國民中學 | 藝術與人文領域 | 網頁設計：C.Kuo | 版本：Ver1.4</p>
+                            
+                        </div>
+                    </main>
+
+                    {/* Mobile Overlay */}
+                    {mobileMenuOpen && (
+                        <div 
+                            className="fixed inset-0 bg-black bg-opacity-50 z-30 md:hidden"
+                            onClick={() => setMobileMenuOpen(false)}
+                        ></div>
+                    )}
+                </div>
+            );
+        };
+
+        const root = ReactDOM.createRoot(document.getElementById('root'));
+        root.render(<App />);
+    </script>
+</body>
+</html>
