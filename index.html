@@ -89,7 +89,8 @@
             ChevronDown: () => <i data-lucide="chevron-down"></i>,
             Play: () => <i data-lucide="play-circle"></i>,
             Image: () => <i data-lucide="image"></i>,
-            Glasses: () => <i data-lucide="glasses"></i>
+            Glasses: () => <i data-lucide="glasses"></i>,
+            Newspaper: () => <i data-lucide="newspaper"></i>
         };
 
         // Data Structure
@@ -145,7 +146,7 @@
                         content: {
                             title: '建築奇蹟：布魯內萊斯基的穹頂',
                             type: 'photo-grid-2x2',
-                            body: '聖母百花大教堂的穹頂是文藝復興建築的象徵。菲利波·布魯內萊斯基在沒有鷹架的情況下，設計了這個雙層殼體結構，解決了當時建築界最大的難題。內部的壁畫《末日審判》則由瓦薩里和祖卡里繪製，氣勢滂薄。(照片提供：王如杏校長)',
+                            body: '聖母百花大教堂的穹頂是文藝復興建築的象徵。菲利波·布魯內萊斯基在沒有鷹架的情況下，設計了這個雙層殼體結構，解決了當時建築界最大的難題。內部的壁畫《末日審判》則由瓦薩里和祖卡里繪製，氣勢滂薄。',
                             // 已更新為您指定的檔案名稱，請確保 1.jpg, 2.jpg, 3.jpg, 4.jpg 與此網頁在同一資料夾
                             images: [
                                 '1.jpg', 
@@ -293,6 +294,21 @@
                 content: {
                     type: 'quiz',
                     title: '文藝復興達人挑戰賽'
+                }
+            },
+            {
+                id: 'media',
+                title: '媒體報導',
+                icon: 'Newspaper',
+                content: {
+                    title: '各界媒體熱烈報導',
+                    type: 'news-list',
+                    items: [
+                        { title: '教育廣播電台：中正國中帶領學生穿越時空，重現文藝復興輝煌', source: '教育廣播電台', date: '2025.12.15', link: '#' },
+                        { title: '聯合報：校園裡的文藝復興，師生共築聖母百花大教堂穹頂', source: '聯合報', date: '2025.12.18', link: '#' },
+                        { title: '中時電子報：虛實整合新典範！VR走進羅浮宮，中正國中美感教育創新', source: '中時電子報', date: '2025.12.20', link: '#' },
+                        { title: '公視新聞網：從課本到劇場，國中生演繹「最後的晚餐」震撼人心', source: '公視新聞網', date: '2025.12.22', link: '#' }
+                    ]
                 }
             }
         ];
@@ -599,6 +615,25 @@
                             ))}
                         </div>
                     )}
+                    
+                    {data.type === 'news-list' && (
+                        <div className="space-y-4">
+                            {data.items.map((item, i) => (
+                                <div key={i} className="bg-white p-6 rounded-xl shadow-sm border border-stone-100 hover:shadow-md transition cursor-pointer flex justify-between items-center group">
+                                    <div className="flex-1 pr-4">
+                                        <h4 className="font-bold text-lg text-amber-900 group-hover:text-amber-700 mb-2 leading-tight">{item.title}</h4>
+                                        <p className="text-stone-500 text-sm flex items-center gap-2">
+                                            <i data-lucide="newspaper" className="w-4 h-4"></i>
+                                            {item.source} | {item.date}
+                                        </p>
+                                    </div>
+                                    <div className="text-amber-800 opacity-50 group-hover:opacity-100 group-hover:scale-110 transition">
+                                        <i data-lucide="chevron-right" className="w-6 h-6"></i>
+                                    </div>
+                                </div>
+                            ))}
+                        </div>
+                    )}
 
                     {data.type === 'quiz' && <QuizComponent />}
                 </div>
@@ -732,5 +767,4 @@
         root.render(<App />);
     </script>
 </body>
-
 </html>
