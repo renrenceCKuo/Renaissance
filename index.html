@@ -164,9 +164,9 @@
                             items: [
                                 { 
                                     title: '縮時攝影：穹頂搭建過程', 
-                                    desc: '學生與老師共同合作，利用環保材質重現穹頂結構。點擊播放影片。',
-                                    // Updated to Youtube Embed URL
-                                    videoSrc: 'https://www.youtube.com/embed/y5YGka9BD6w?si=JXOpL-V49Jbylfoi',
+                                    desc: '學生與老師共同合作，利用環保材質重現穹頂結構。點擊開啟新視窗播放影片。',
+                                    // Changed to externalLink for opening in new tab
+                                    externalLink: 'https://www.youtube.com/watch?v=y5YGka9BD6w',
                                     thumbnail: '1.jpg'
                                 },
                                 { 
@@ -507,6 +507,14 @@
                 lucide.createIcons();
             });
 
+            const handleClick = () => {
+                if (video.externalLink) {
+                    window.open(video.externalLink, '_blank');
+                } else if (video.videoSrc) {
+                    setIsPlaying(true);
+                }
+            };
+
             if (isPlaying && video.videoSrc) {
                 // Check if it's a YouTube URL
                 const isYoutube = video.videoSrc.includes('youtube.com/embed');
@@ -556,11 +564,11 @@
             return (
                 <div className="bg-stone-800 rounded-xl overflow-hidden shadow-lg h-full flex flex-col">
                     <div 
-                        className={`h-48 bg-black flex items-center justify-center relative group ${video.videoSrc ? 'cursor-pointer' : ''}`}
-                        onClick={() => video.videoSrc && setIsPlaying(true)}
+                        className={`h-48 bg-black flex items-center justify-center relative group ${video.videoSrc || video.externalLink ? 'cursor-pointer' : ''}`}
+                        onClick={handleClick}
                     >
                         <div className="absolute inset-0 bg-cover bg-center opacity-60" style={{backgroundImage: `url(${video.thumbnail || 'https://images.unsplash.com/photo-1536240478700-b869070f9279?q=80&w=1000&auto=format&fit=crop'})`}}></div>
-                        {video.videoSrc && (
+                        {(video.videoSrc || video.externalLink) && (
                             <i data-lucide="play-circle" className="w-16 h-16 text-white opacity-90 group-hover:opacity-100 group-hover:scale-110 transition relative z-10"></i>
                         )}
                     </div>
