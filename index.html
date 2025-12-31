@@ -100,9 +100,10 @@
                 title: '策展理念',
                 icon: 'BookOpen',
                 content: {
-                    title: '光影漫入游於藝，中正迎來文藝興',
+                    title: '游於藝之文藝復興——中正國中穹頂玩藝特展',
                     type: 'text',
                     body: [
+                        '光影漫入游於藝，中正迎來文藝興',
                         '在校園裡，一場跨越六百年的文明對話正悄然展開。「游於藝之文藝復興——中正國中穹頂玩藝特展」以藝術為舟、科技為槳，邀請師生與社區一同穿越時空，回到人文精神甦醒的年代。展覽以「光影漫入游於藝，中正迎來文藝興」為策展主題，將文藝復興的理性、創造與人文精神，引入當代校園學習現場，讓藝術不再只是被觀看，而是被經驗、被演繹、被再創作。',
                         '一、穿越時空的蟲洞：穹頂降臨校園，學生走入美術館',
                         '策展核心以「穿越時空的蟲洞」為概念，象徵知識與想像的跨世紀連結。展場復刻西元 1436 年震撼歐洲的建築創舉——義大利佛羅倫斯的聖母百花大教堂穹頂。師生以三角形紙板結構，依循幾何與工程原理組裝穹頂，致敬布魯內萊斯基以理性與創新完成的不可能任務。',
@@ -145,7 +146,7 @@
                         content: {
                             title: '建築奇蹟：布魯內萊斯基的穹頂',
                             type: 'photo-grid-2x2',
-                            body: '聖母百花大教堂的穹頂是文藝復興建築的象徵。菲利波·布魯內萊斯基在沒有鷹架的情況下，設計了這個雙層殼體結構，解決了當時建築界最大的難題。內部的壁畫《末日審判》則由瓦薩里和祖卡里繪製，氣勢滂薄。(照片提供與版權所有：王如杏校長)',
+                            body: '聖母百花大教堂的穹頂是文藝復興建築的象徵。菲利波·布魯內萊斯基在沒有鷹架的情況下，設計了這個雙層殼體結構，解決了當時建築界最大的難題。內部的壁畫《末日審判》則由瓦薩里和祖卡里繪製，氣勢滂薄。',
                             images: [
                                 '1.jpg', 
                                 '2.jpg', 
@@ -164,16 +165,13 @@
                                 { 
                                     title: '縮時攝影：穹頂搭建過程', 
                                     desc: '學生與老師共同合作，利用環保材質重現穹頂結構。點擊開啟新視窗播放影片。',
-                                    // Changed to externalLink for opening in new tab
                                     externalLink: 'https://www.youtube.com/watch?v=y5YGka9BD6w',
-                                    thumbnail: '100.JPG'
+                                    thumbnail: '1.jpg'
                                 },
                                 { 
                                     title: '沈浸式劇場體驗', 
                                     desc: '在自製的穹頂下，進行的光影投射展演。',
-                                    // Changed to externalLink for opening in new tab
-                                    externalLink: 'https://www.youtube.com/watch?v=w-veqSS2JbI',
-                                    thumbnail: '101.JPG'
+                                    thumbnail: 'https://images.unsplash.com/photo-1536240478700-b869070f9279?q=80&w=1000&auto=format&fit=crop'
                                 }
                             ]
                         }
@@ -277,7 +275,7 @@
                     title: '虛擬實境：與蒙娜麗莎面對面',
                     type: 'mixed',
                     body: '透過 VR 眼鏡，我們將教室瞬間變成法國羅浮宮的德農館。學生可以360度環視展廳，甚至可以「越過」防彈玻璃，近距離觀察畫作的裂紋與筆觸。',
-                    image: '601.JPG',
+                    image: 'https://images.unsplash.com/photo-1622979135225-d2ba269fb1ac?q=80&w=1000&auto=format&fit=crop',
                     isVR: true,
                     vrLink: 'https://www.youtube.com/watch?v=GI7kO9PtB1k'
                 }
@@ -669,7 +667,10 @@
                             <div className="md:w-1/2 flex flex-col justify-center">
                                 <p className="text-lg leading-relaxed text-stone-700 mb-6">{data.body}</p>
                                 {data.isVR && (
-                                    <button className="flex items-center justify-center gap-2 bg-indigo-600 text-white py-3 px-6 rounded-lg hover:bg-indigo-700 transition shadow-lg">
+                                    <button 
+                                        onClick={() => window.open(data.vrLink || 'https://www.youtube.com/watch?v=GI7kO9PtB1k', '_blank')}
+                                        className="flex items-center justify-center gap-2 bg-indigo-600 text-white py-3 px-6 rounded-lg hover:bg-indigo-700 transition shadow-lg"
+                                    >
                                         <i data-lucide="glasses"></i>
                                         啟動 VR 體驗模式
                                     </button>
@@ -851,10 +852,3 @@
     </script>
 </body>
 </html>
-
-
-
-
-
-
-
