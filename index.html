@@ -165,6 +165,7 @@
                                 { 
                                     title: '縮時攝影：穹頂搭建過程', 
                                     desc: '學生與老師共同合作，利用環保材質重現穹頂結構。點擊播放影片。',
+                                    // Updated to Youtube Embed URL
                                     videoSrc: 'https://www.youtube.com/embed/y5YGka9BD6w?si=JXOpL-V49Jbylfoi',
                                     thumbnail: '1.jpg'
                                 },
@@ -507,17 +508,34 @@
             });
 
             if (isPlaying && video.videoSrc) {
+                // Check if it's a YouTube URL
+                const isYoutube = video.videoSrc.includes('youtube.com/embed');
+
                 return (
                     <div className="bg-stone-800 rounded-xl overflow-hidden shadow-lg h-full flex flex-col">
                         <div className="aspect-video bg-black">
-                            <video 
-                                src={video.videoSrc} 
-                                controls 
-                                autoPlay 
-                                className="w-full h-full"
-                            >
-                                您的瀏覽器不支援影片播放。
-                            </video>
+                            {isYoutube ? (
+                                <iframe 
+                                    width="100%" 
+                                    height="100%" 
+                                    // Append autoplay to the URL (handling existing query params)
+                                    src={`${video.videoSrc}&autoplay=1`} 
+                                    title={video.title} 
+                                    frameBorder="0" 
+                                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" 
+                                    referrerPolicy="strict-origin-when-cross-origin" 
+                                    allowFullScreen
+                                ></iframe>
+                            ) : (
+                                <video 
+                                    src={video.videoSrc} 
+                                    controls 
+                                    autoPlay 
+                                    className="w-full h-full"
+                                >
+                                    您的瀏覽器不支援影片播放。
+                                </video>
+                            )}
                         </div>
                         <div className="p-4 bg-white flex-1 flex flex-col justify-between">
                             <div>
@@ -801,7 +819,7 @@
                         
                         {/* Footer */}
                         <div className="mt-12 pt-8 border-t border-stone-300 text-center text-stone-500 text-sm">
-                            <p>© 2025 新北市中正國民中學 | 藝術與人文領域 | 網頁設計：C.Kuo | 版本：Ver1.5</p>
+                            <p>© 2025 新北市中正國民中學 | 藝術與人文領域 | 網頁設計：C.Kuo | 版本：Ver1.4</p>
                             
                         </div>
                     </main>
@@ -822,7 +840,3 @@
     </script>
 </body>
 </html>
-
-
-
-
