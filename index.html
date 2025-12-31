@@ -100,10 +100,10 @@
                 title: '策展理念',
                 icon: 'BookOpen',
                 content: {
-                   title: '游於藝之文藝復興——中正國中穹頂玩藝特展',
+                    title: '游於藝之文藝復興——中正國中穹頂玩藝特展',
                     type: 'text',
                     body: [
-                        '光影漫入游於藝，中正迎來文藝復興',
+                        '光影漫入游於藝，中正迎來文藝興',
                         '在校園裡，一場跨越六百年的文明對話正悄然展開。「游於藝之文藝復興——中正國中穹頂玩藝特展」以藝術為舟、科技為槳，邀請師生與社區一同穿越時空，回到人文精神甦醒的年代。展覽以「光影漫入游於藝，中正迎來文藝興」為策展主題，將文藝復興的理性、創造與人文精神，引入當代校園學習現場，讓藝術不再只是被觀看，而是被經驗、被演繹、被再創作。',
                         '一、穿越時空的蟲洞：穹頂降臨校園，學生走入美術館',
                         '策展核心以「穿越時空的蟲洞」為概念，象徵知識與想像的跨世紀連結。展場復刻西元 1436 年震撼歐洲的建築創舉——義大利佛羅倫斯的聖母百花大教堂穹頂。師生以三角形紙板結構，依循幾何與工程原理組裝穹頂，致敬布魯內萊斯基以理性與創新完成的不可能任務。',
@@ -119,7 +119,6 @@
                         '當光影漫入校園，文藝復興不只是歷史名詞，而成為今日教育的活水——啟動理性、滋養人文、點燃創造。中正國中以「穹頂玩藝」為橋，讓大師的精神與學生的想像在此相遇，迎來屬於校園的文藝興盛時刻。',
                         '策展人:王如杏 12.12.2025'
                     ],
-                    //image: 'https://images.unsplash.com/photo-1596728328773-6f4e75d0234a?q=80&w=1000&auto=format&fit=crop'
                 }
             },
             {
@@ -147,8 +146,7 @@
                         content: {
                             title: '建築奇蹟：布魯內萊斯基的穹頂',
                             type: 'photo-grid-2x2',
-                            body: '聖母百花大教堂的穹頂是文藝復興建築的象徵。菲利波·布魯內萊斯基在沒有鷹架的情況下，設計了這個雙層殼體結構，解決了當時建築界最大的難題。內部的壁畫《末日審判》則由瓦薩里和祖卡里繪製，氣勢滂薄。(照片提供：王如杏校長)',
-                            // 已更新為您指定的檔案名稱，請確保 1.jpg, 2.jpg, 3.jpg, 4.jpg 與此網頁在同一資料夾
+                            body: '聖母百花大教堂的穹頂是文藝復興建築的象徵。菲利波·布魯內萊斯基在沒有鷹架的情況下，設計了這個雙層殼體結構，解決了當時建築界最大的難題。內部的壁畫《末日審判》則由瓦薩里和祖卡里繪製，氣勢滂薄。',
                             images: [
                                 '1.jpg', 
                                 '2.jpg', 
@@ -164,8 +162,17 @@
                             title: '校園裡的穹頂：全紀錄',
                             type: 'video-grid',
                             items: [
-                                { title: '縮時攝影：穹頂搭建過程', desc: '學生與老師共同合作，利用環保材質重現穹頂結構。' },
-                                { title: '沈浸式劇場體驗', desc: '在自製的穹頂下，進行的光影投射展演。' }
+                                { 
+                                    title: '縮時攝影：穹頂搭建過程', 
+                                    desc: '學生與老師共同合作，利用環保材質重現穹頂結構。點擊播放影片。',
+                                    videoSrc: 'video01.mp4',
+                                    thumbnail: '1.jpg'
+                                },
+                                { 
+                                    title: '沈浸式劇場體驗', 
+                                    desc: '在自製的穹頂下，進行的光影投射展演。',
+                                    thumbnail: 'https://images.unsplash.com/photo-1536240478700-b869070f9279?q=80&w=1000&auto=format&fit=crop'
+                                }
                             ]
                         }
                     }
@@ -492,6 +499,61 @@
             );
         };
 
+        const VideoGridItem = ({ video }) => {
+            const [isPlaying, setIsPlaying] = useState(false);
+
+            useEffect(() => {
+                lucide.createIcons();
+            });
+
+            if (isPlaying && video.videoSrc) {
+                return (
+                    <div className="bg-stone-800 rounded-xl overflow-hidden shadow-lg h-full flex flex-col">
+                        <div className="aspect-video bg-black">
+                            <video 
+                                src={video.videoSrc} 
+                                controls 
+                                autoPlay 
+                                className="w-full h-full"
+                            >
+                                您的瀏覽器不支援影片播放。
+                            </video>
+                        </div>
+                        <div className="p-4 bg-white flex-1 flex flex-col justify-between">
+                            <div>
+                                <h4 className="font-bold text-lg mb-1">{video.title}</h4>
+                                <p className="text-stone-500 text-sm">{video.desc}</p>
+                            </div>
+                            <button 
+                                onClick={() => setIsPlaying(false)}
+                                className="mt-4 text-sm text-amber-700 hover:text-amber-900 underline self-start"
+                            >
+                                關閉影片
+                            </button>
+                        </div>
+                    </div>
+                );
+            }
+
+            return (
+                <div className="bg-stone-800 rounded-xl overflow-hidden shadow-lg h-full flex flex-col">
+                    <div 
+                        className={`h-48 bg-black flex items-center justify-center relative group ${video.videoSrc ? 'cursor-pointer' : ''}`}
+                        onClick={() => video.videoSrc && setIsPlaying(true)}
+                    >
+                        <div className="absolute inset-0 bg-cover bg-center opacity-60" style={{backgroundImage: `url(${video.thumbnail || 'https://images.unsplash.com/photo-1536240478700-b869070f9279?q=80&w=1000&auto=format&fit=crop'})`}}></div>
+                        {video.videoSrc && (
+                            <i data-lucide="play-circle" className="w-16 h-16 text-white opacity-90 group-hover:opacity-100 group-hover:scale-110 transition relative z-10"></i>
+                        )}
+                    </div>
+                    <div className="p-4 bg-white flex-1">
+                        <h4 className="font-bold text-lg mb-1">{video.title}</h4>
+                        <p className="text-stone-500 text-sm">{video.desc}</p>
+                    </div>
+                </div>
+            );
+        };
+
         const ContentDisplay = ({ data }) => {
             // Check if data is null or undefined to prevent crash
             if (!data) return <div className="p-10 text-center text-stone-400">請選擇一個項目</div>;
@@ -603,16 +665,7 @@
                     {data.type === 'video-grid' && (
                         <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                             {data.items.map((video, i) => (
-                                <div key={i} className="bg-stone-800 rounded-xl overflow-hidden shadow-lg">
-                                    <div className="h-48 bg-black flex items-center justify-center relative group cursor-pointer">
-                                        <div className="absolute inset-0 bg-cover bg-center opacity-50" style={{backgroundImage: 'url(https://images.unsplash.com/photo-1536240478700-b869070f9279?q=80&w=1000&auto=format&fit=crop)'}}></div>
-                                        <i data-lucide="play-circle" className="w-16 h-16 text-white opacity-80 group-hover:opacity-100 group-hover:scale-110 transition relative z-10"></i>
-                                    </div>
-                                    <div className="p-4 bg-white">
-                                        <h4 className="font-bold text-lg mb-1">{video.title}</h4>
-                                        <p className="text-stone-500 text-sm">{video.desc}</p>
-                                    </div>
-                                </div>
+                                <VideoGridItem key={i} video={video} />
                             ))}
                         </div>
                     )}
@@ -769,6 +822,3 @@
     </script>
 </body>
 </html>
-
-
-
