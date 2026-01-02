@@ -752,6 +752,10 @@
             }, [activeId, activeSubId, expandedMenu, mobileMenuOpen]);
 
             const handleMenuClick = (item) => {
+                if (item.externalLink) {
+                    window.open(item.externalLink, '_blank');
+                    return;
+                }
                 if (item.subMenus) {
                     setExpandedMenu(expandedMenu === item.id ? null : item.id);
                     // Automatically select first sub-item if not already selected
@@ -855,6 +859,7 @@
     </script>
 </body>
 </html>
+
 
 
 
