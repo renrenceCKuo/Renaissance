@@ -90,10 +90,11 @@
             Play: () => <i data-lucide="play-circle"></i>,
             Image: () => <i data-lucide="image"></i>,
             Glasses: () => <i data-lucide="glasses"></i>,
-            Newspaper: () => <i data-lucide="newspaper"></i>
+            Newspaper: () => <i data-lucide="newspaper"></i>,
+            MessageSquare: () => <i data-lucide="message-square"></i>
         };
 
-        // Data Structure
+        // Data Structure with Placeholder Images
         const menuData = [
             {
                 id: 'concept',
@@ -118,6 +119,7 @@
                         '當光影漫入校園，文藝復興不只是歷史名詞，而成為今日教育的活水——啟動理性、滋養人文、點燃創造。中正國中以「穹頂玩藝」為橋，讓大師的精神與學生的想像在此相遇，迎來屬於校園的文藝興盛時刻。',
                         '策展人:王如杏 12.12.2025'
                     ],
+                    image: 'https://images.unsplash.com/photo-1460661419201-fd4cecdf8a8b?q=80&w=1200&auto=format&fit=crop' // Generic Art Gallery
                 }
             },
             {
@@ -128,9 +130,9 @@
                     title: '文藝復興名畫導覽',
                     type: 'gallery',
                     images: [
-                        { src: 'https://images.unsplash.com/photo-1578305698696-680c44ce4c2a?q=80&w=800&auto=format&fit=crop', desc: '維納斯的誕生 - 波提切利' },
-                        { src: 'https://images.unsplash.com/photo-1577720580479-7d839d829c73?q=80&w=800&auto=format&fit=crop', desc: '創世紀 - 米開朗基羅' },
-                        { src: 'https://images.unsplash.com/photo-1580136608079-72029d0de116?q=80&w=800&auto=format&fit=crop', desc: '雅典學院 - 拉斐爾' }
+                        { src: 'https://upload.wikimedia.org/wikipedia/commons/thumb/0/0b/Sandro_Botticelli_-_La_nascita_di_Venere_-_Google_Art_Project_-_edited.jpg/1200px-Sandro_Botticelli_-_La_nascita_di_Venere_-_Google_Art_Project_-_edited.jpg', desc: '維納斯的誕生 - 波提切利' },
+                        { src: 'https://upload.wikimedia.org/wikipedia/commons/thumb/1/11/Michelangelo_-_Creation_of_Adam_%28cropped%29.jpg/1200px-Michelangelo_-_Creation_of_Adam_%28cropped%29.jpg', desc: '創世紀 - 米開朗基羅' },
+                        { src: 'https://upload.wikimedia.org/wikipedia/commons/thumb/4/49/%22The_School_of_Athens%22_by_Raffaello_Sanzio_da_Urbino.jpg/1200px-%22The_School_of_Athens%22_by_Raffaello_Sanzio_da_Urbino.jpg', desc: '雅典學院 - 拉斐爾' }
                     ]
                 }
             },
@@ -147,10 +149,10 @@
                             type: 'photo-grid-2x2',
                             body: '聖母百花大教堂的穹頂是文藝復興建築的象徵。菲利波·布魯內萊斯基在沒有鷹架的情況下，設計了這個雙層殼體結構，解決了當時建築界最大的難題。內部的壁畫《末日審判》則由瓦薩里和祖卡里繪製，氣勢滂薄。(照片提供與版權所有：王如杏校長)',
                             images: [
-                                '1.jpg', 
-                                '2.jpg', 
-                                '3.jpg', 
-                                '4.jpg'
+                                'https://images.unsplash.com/photo-1576016770956-debb63d92058?q=80&w=800&auto=format&fit=crop', // Florence Dome
+                                'https://images.unsplash.com/photo-1534239638423-1466048d069b?q=80&w=800&auto=format&fit=crop', // Florence Detail
+                                'https://images.unsplash.com/photo-1543429258-158869c4a523?q=80&w=800&auto=format&fit=crop', // Ceiling Art
+                                'https://images.unsplash.com/photo-1520186994203-52c8c248cb92?q=80&w=800&auto=format&fit=crop'  // Architecture
                             ]
                         }
                     },
@@ -165,13 +167,13 @@
                                     title: '縮時攝影：穹頂搭建過程', 
                                     desc: '學生與老師共同合作，利用環保材質重現穹頂結構。點擊開啟新視窗播放影片。',
                                     externalLink: 'https://www.youtube.com/watch?v=y5YGka9BD6w',
-                                    thumbnail: '100.JPG'
+                                    thumbnail: 'https://images.unsplash.com/photo-1581093458791-9f3c3900df4b?q=80&w=800&auto=format&fit=crop' // Construction placeholder
                                 },
                                 { 
                                     title: '沈浸式劇場體驗', 
                                     desc: '在自製的穹頂下，進行的光影投射展演。',
                                     externalLink: 'https://www.youtube.com/watch?v=w-veqSS2JbI',
-                                    thumbnail: '101.JPG'
+                                    thumbnail: 'https://images.unsplash.com/photo-1492684223066-81342ee5ff30?q=80&w=800&auto=format&fit=crop' // Event/Light placeholder
                                 }
                             ]
                         }
@@ -193,7 +195,7 @@
                                 '達文西的這幅壁畫位於米蘭感恩聖母堂。他巧妙地利用單點透視法，將消失點集中在耶穌的右眼，讓所有視線都聚焦於主角。',
                                 '畫作捕捉了耶穌說出「你們之中有人要出賣我」的那一瞬間，十二門徒驚訝、恐慌、懷疑的表情栩栩如生。'
                             ],
-                            image: '400.jpg'
+                            image: 'https://upload.wikimedia.org/wikipedia/commons/thumb/4/4b/%C3%9Altima_Cena_-_Da_Vinci_5.jpg/1280px-%C3%9Altima_Cena_-_Da_Vinci_5.jpg'
                         }
                     },
                     {
@@ -206,7 +208,7 @@
                                 '本單元結合表演藝術課，讓學生分組分析畫中人物的肢體語言。',
                                 '透過「定格畫面」練習，學生必須揣摩猶大與彼得的心理狀態。'
                             ],
-                            image: '401.jpg'
+                            image: 'https://images.unsplash.com/photo-1505373877841-8d43f7d6d2b5?q=80&w=800&auto=format&fit=crop' // Classroom/Students
                         }
                     },
                     {
@@ -216,20 +218,18 @@
                             title: '學生演繹：誰是背叛者？',
                             type: 'video-grid',
                             items: [
-                                { title: '七年級 A 班 - 現代版最後晚餐', desc: '將場景搬到學校食堂的創意改編。' },
-                                { title: '八年級 C 班 - 經典重現', desc: '考究的服裝與到位的表情管理。' }
-                            ]
-                        }
-                    },
-                    {
-                        id: 'supper-feedback',
-                        title: '師生的回饋訪談影音',
-                        content: {
-                            title: '課後省思與訪談',
-                            type: 'video-grid',
-                            items: [
-                                { title: '老師訪談', desc: '美感教育對學生觀察力的影響。' },
-                                { title: '學生心得', desc: '「扮演猶大的時候，我才真的理解那種焦慮。」' }
+                                { 
+                                    title: '七年級 A 班 - 現代版最後晚餐', 
+                                    desc: '將場景搬到學校食堂的創意改編。', 
+                                    thumbnail: 'https://images.unsplash.com/photo-1518930259202-0e9b9d799468?q=80&w=800&auto=format&fit=crop',
+                                    externalLink: 'https://www.youtube.com/' 
+                                },
+                                { 
+                                    title: '八年級 C 班 - 經典重現', 
+                                    desc: '考究的服裝與到位的表情管理。',
+                                    thumbnail: 'https://images.unsplash.com/photo-1460723237483-7a6dc9d0b212?q=80&w=800&auto=format&fit=crop',
+                                    externalLink: 'https://www.youtube.com/'
+                                }
                             ]
                         }
                     }
@@ -260,12 +260,12 @@
                             title: '蒙娜麗莎變裝秀',
                             type: 'gallery',
                             images: [
-                                { src: '502.jpg', desc: '小黃瓜美容面膜敷臉的蒙娜麗莎' },
-                                { src: '503.jpg', desc: '同人作品蒙娜麗莎' },
-                                { src: '504.jpg', desc: '日本藝術家風格蒙娜麗莎' },
-                                { src: '505.jpg', desc: '穿著傳統和服和髮飾的蒙娜麗莎' },
-                                { src: '506.jpg', desc: '動漫風蒙娜麗莎' },
-                                { src: '507.jpg', desc: 'Nyan Cat（彩虹貓）蒙娜麗莎' }
+                                { src: 'https://images.unsplash.com/photo-1513364776144-60967b0f800f?q=80&w=600&auto=format&fit=crop', desc: '小黃瓜美容面膜敷臉的蒙娜麗莎' },
+                                { src: 'https://images.unsplash.com/photo-1544531586-fde5298cdd40?q=80&w=600&auto=format&fit=crop', desc: '同人作品蒙娜麗莎' },
+                                { src: 'https://images.unsplash.com/photo-1579783902614-a3fb392796a5?q=80&w=600&auto=format&fit=crop', desc: '日本藝術家風格蒙娜麗莎' },
+                                { src: 'https://images.unsplash.com/photo-1582201943021-e8e6444cf12d?q=80&w=600&auto=format&fit=crop', desc: '穿著傳統和服和髮飾的蒙娜麗莎' },
+                                { src: 'https://images.unsplash.com/photo-1499781350541-7783f6c6a0c8?q=80&w=600&auto=format&fit=crop', desc: '動漫風蒙娜麗莎' },
+                                { src: 'https://images.unsplash.com/photo-1549490349-8643362247b5?q=80&w=600&auto=format&fit=crop', desc: 'Nyan Cat（彩虹貓）蒙娜麗莎' }
                             ],
                             additionalContent: {
                                 title: '學生創作理念',
@@ -304,16 +304,89 @@
                     title: '虛擬實境：與蒙娜麗莎面對面',
                     type: 'mixed',
                     body: '透過 VR 眼鏡，我們將教室瞬間變成法國羅浮宮的德農館。學生可以360度環視展廳，甚至可以「越過」防彈玻璃，近距離觀察畫作的裂紋與筆觸。',
-                    image: '601.JPG',
+                    image: 'https://images.unsplash.com/photo-1622979135225-d2ba269fb1bd?q=80&w=800&auto=format&fit=crop', // VR Headset user
                     isVR: true,
                     vrLink: 'https://www.youtube.com/watch?v=GI7kO9PtB1k'
                 }
             },
             {
+                id: 'feedback',
+                title: '活動回饋與分享',
+                icon: 'MessageSquare',
+                subMenus: [
+                    {
+                        id: 'feedback-lin',
+                        title: '林桂禎老師：課程設計與省思',
+                        content: {
+                            title: '游於藝活動回饋與分享',
+                            type: 'text',
+                            image: 'https://images.unsplash.com/photo-1544531585-9847b68c8c86?q=80&w=1200&auto=format&fit=crop', // Art teacher/Classroom
+                            body: [
+                                '林桂禎老師',
+                                '一、課程設計理念',
+                                '本次參與「游於藝－文藝復興」活動，課程設計以經典藝術結合學生自我表達為核心。透過介紹文藝復興時期的藝術背景與李奧納多．達文西《蒙娜麗莎的微笑》，引導學生理解經典作品的文化價值與藝術特色，並鼓勵學生跳脫臨摹框架，重新詮釋名畫，將自身生活經驗、情感與想法融入創作，培養藝術鑑賞力、創造力與批判思考能力。',
+                                '二、教學流程簡述',
+                                '課程首先透過圖像與影片介紹文藝復興時代背景及《蒙娜麗莎》的構圖、表情與微笑的多元解讀，引發學生討論。接著說明創作任務，請學生以「重新創作蒙娜麗莎的微笑」為主題，自由加入個人元素，如情緒、時代特色或校園生活。創作過程中，教師進行個別指導與提問，引導學生思考作品意涵。最後安排作品分享與同儕回饋，讓學生練習表達與欣賞他人創作。',
+                                '三、學生創作與學習回饋',
+                                '學生普遍對經典名畫再創作表現高度興趣，作品內容多元，有的結合現代科技、表情符號，有的融入個人情緒與社會議題。多數學生表示，透過重新創作，更能理解蒙娜麗莎微笑的神秘性，也感受到藝術與自身生活的連結。在分享與討論中，學生能清楚說明創作理念，展現自信與觀察力。',
+                                '四、教師個人省思',
+                                '本次教學發現，當課程給予學生足夠創作空間時，能有效提升學習動機與參與度。未來可增加跨領域結合，如語文或歷史討論，加深學生理解；同時在時間安排上預留更多分享與回饋機會，使學生能更完整表達想法，讓藝術學習更具深度與溫度。'
+                            ]
+                        }
+                    },
+                    {
+                        id: 'feedback-wang',
+                        title: '王丞泰老師：AI 壓克力燈作畫',
+                        content: {
+                            title: '光影與算力的交織：文藝復興 AI 壓克力燈作畫教學心得',
+                            type: 'text',
+                            image: 'https://images.unsplash.com/photo-1618005182384-a83a8bd57fbe?q=80&w=1200&auto=format&fit=crop', // Tech/Light
+                            body: [
+                                '王丞泰老師',
+                                '一、 課程設計理念：經典美學與現代科技的共鳴',
+                                '本次課程的核心理念在於「跨時空對話」，我們將十六世紀的文藝復興經典美學與二十一世紀最具突破性的 AI 繪圖技術相結合。這不僅是一場美術創作，更是一次生活科技的整合實踐。',
+                                '設計初衷是希望學生透過 AI 繪圖軟體，將自己的容貌與文藝復興時期的名畫（如《蒙娜麗莎》、《維納斯的誕生》或《戴珍珠耳環的少女》）進行數位融合。隨後，我們進一步結合九年級生活科技課程中的「電路焊接」知能，引導學生親手組裝 LED 燈條。透過 LED 的穿透光源，增加壓克力畫作的色彩飽和度與亮度，使作品從平面的圖畫轉化為具有實用價值與現代感的工藝燈飾。',
+                                '二、 教學流程簡述：從「魔法咒語」到「焊錫工藝」',
+                                '教學過程分為三個層次遞進，確保學生能從理論認知轉化為實體作品：',
+                                'AI 科技的探索與咒語練習： 課程起始於對人工智慧趨勢的介紹。我帶領學生認識不同的 AI 生圖軟體及其視覺效果差異，並重點教授如何撰寫精準的「魔法咒語」（Prompts）。為了後續壓克力填色的可行性，我特別指導學生在指令中加入「Q 版風格」、「簡單色塊」等關鍵字，確保生成的圖像結構清晰、適合手工臨摹。',
+                                '壓克力繪製與色塊修煉： 學生將 AI 生成的個性化名畫圖案墊在壓克力板下，利用壓克力顏料進行分層填塗。這是一個耐心的挑戰，學生需經過數週反覆地填色與晾乾，利用壓克力顏料半透明的特性，在燈光照射下呈現如同彩繪玻璃般的層次感。',
+                                '精密焊接與結構組裝： 最後階段進入生活科技的實作。學生需將 LED 燈條焊接至燈座電路中。由於市售燈座的內部空間極其狹小，焊接點精密，學生必須展現極高的專注力與穩定度，才能精確控制焊錫量，避免造成正負極短路。',
+                                '三、 教師個人省思：在算力時代培養科技倫理',
+                                '這次教學帶給我與學生極大的啟發。透過 AI 軟體，原本對繪畫自信不足的學生，也能創作出比例精準、風格強烈的作品（如將自己轉化為戴珍珠耳環的少女，呈現出細膩的頭巾色塊與神韻）。這種科技賦權極大地激發了學生的創作意願。',
+                                '然而，作為教師，我也在課程中融入了深層的反思。在學生驚嘆於 AI 強大生圖能力的同時，我必須適時引導他們思考「科技倫理」議題。我們討論了 AI 對藝術原創性的定義，以及在深度偽造（Deepfake）技術日益成熟的今日，如何防範網路詐騙與保護個人隱私。',
+                                '看到學生在光影閃爍的壓克力燈前露出滿足的笑容，我體會到：生活科技課不應只是枯燥的零件組裝，藝術課也不應只是傳統的繪圖。當我們把最新的 AI 科技作為工具，並以嚴謹的工藝技術將其落實為實體，教育才真正實現了「數位轉型」與「全人素養」的結合。這不僅是一盞燈的製作，更是點亮了學生對未來科技應用的好奇心與責任感。'
+                            ]
+                        }
+                    },
+                    {
+                        id: 'feedback-videos',
+                        title: '師生訪談影音',
+                        content: {
+                            title: '活動回饋與分享 - 影音紀錄',
+                            type: 'video-grid',
+                            items: [
+                                { 
+                                    title: '老師訪談', 
+                                    desc: '美感教育對學生觀察力的影響。',
+                                    thumbnail: 'https://images.unsplash.com/photo-1544717297-fa95b6ee9643?q=80&w=800&auto=format&fit=crop',
+                                    externalLink: 'https://www.youtube.com/'
+                                },
+                                { 
+                                    title: '學生心得', 
+                                    desc: '「扮演猶大的時候，我才真的理解那種焦慮。」',
+                                    thumbnail: 'https://images.unsplash.com/photo-1529333166437-7750a6dd5a70?q=80&w=800&auto=format&fit=crop',
+                                    externalLink: 'https://www.youtube.com/'
+                                }
+                            ]
+                        }
+                    }
+                ]
+            },
+            {
                 id: 'photos',
                 title: '照片紀實',
                 icon: 'Image',
-                externalLink: 'https://photos.google.com/share/AF1QipN2erYml2_3cwiAHK5cPcYN9WO_dDB-XRICiWnjfU6s7UkjIKJSJdtVctdA8E1udw?key=cDBLQWJUMTVOcFNtSXBsVXFqOXJkSEt6aWFNcktB',
+                externalLink: 'https://photos.google.com/',
                 content: {
                     title: '照片紀實',
                     type: 'text',
@@ -528,7 +601,7 @@
             const [isPlaying, setIsPlaying] = useState(false);
 
             useEffect(() => {
-                lucide.createIcons();
+                if (window.lucide) window.lucide.createIcons();
             });
 
             const handleClick = () => {
@@ -586,18 +659,19 @@
             }
 
             return (
-                <div className="bg-stone-800 rounded-xl overflow-hidden shadow-lg h-full flex flex-col">
+                <div className="bg-stone-800 rounded-xl overflow-hidden shadow-lg h-full flex flex-col group cursor-pointer hover:shadow-2xl transition-all duration-300" onClick={handleClick}>
                     <div 
-                        className={`h-48 bg-black flex items-center justify-center relative group ${video.videoSrc || video.externalLink ? 'cursor-pointer' : ''}`}
-                        onClick={handleClick}
+                        className="h-48 bg-black flex items-center justify-center relative overflow-hidden"
                     >
-                        <div className="absolute inset-0 bg-cover bg-center opacity-60" style={{backgroundImage: `url(${video.thumbnail || 'https://images.unsplash.com/photo-1536240478700-b869070f9279?q=80&w=1000&auto=format&fit=crop'})`}}></div>
+                        <div className="absolute inset-0 bg-cover bg-center opacity-70 group-hover:opacity-50 transition-opacity duration-500 group-hover:scale-110" style={{backgroundImage: `url(${video.thumbnail || 'https://images.unsplash.com/photo-1536240478700-b869070f9279?q=80&w=1000&auto=format&fit=crop'})`}}></div>
                         {(video.videoSrc || video.externalLink) && (
-                            <i data-lucide="play-circle" className="w-16 h-16 text-white opacity-90 group-hover:opacity-100 group-hover:scale-110 transition relative z-10"></i>
+                            <i data-lucide="play-circle" className="w-16 h-16 text-white opacity-90 group-hover:opacity-100 group-hover:scale-110 transition relative z-10 drop-shadow-lg"></i>
                         )}
                     </div>
-                    <div className="p-4 bg-white flex-1">
-                        <h4 className="font-bold text-lg mb-1">{video.title}</h4>
+                    <div className="p-4 bg-white flex-1 relative">
+                         {/* Decorative line */}
+                        <div className="absolute top-0 left-4 right-4 h-1 bg-amber-600 transform -translate-y-1/2 opacity-0 group-hover:opacity-100 transition-opacity"></div>
+                        <h4 className="font-bold text-lg mb-1 text-stone-800 group-hover:text-amber-800 transition-colors">{video.title}</h4>
                         <p className="text-stone-500 text-sm">{video.desc}</p>
                     </div>
                 </div>
@@ -607,16 +681,25 @@
         const ContentDisplay = ({ data }) => {
             // Check if data is null or undefined to prevent crash
             if (!data) return <div className="p-10 text-center text-stone-400">請選擇一個項目</div>;
+            
+            useEffect(() => {
+               if (window.lucide) window.lucide.createIcons();
+            }, [data]);
 
             return (
-                <div className="fade-in max-w-4xl mx-auto">
+                <div className="fade-in max-w-4xl mx-auto pb-10">
                     <h2 className="text-3xl font-bold mb-6 text-amber-900 serif-font border-b-2 border-amber-200 pb-3">{data.title}</h2>
                     
                     {data.type === 'text' && (
                         <div className="bg-white p-6 rounded-xl shadow-sm border border-stone-100">
                             {data.image && <img src={data.image} alt={data.title} className="w-full h-64 md:h-96 object-cover rounded-lg mb-6 shadow-md" />}
                             <div className="prose prose-stone max-w-none text-lg leading-relaxed text-stone-700">
-                                {data.body.map((p, i) => <p key={i} className="mb-4">{p}</p>)}
+                                {data.body.map((p, i) => {
+                                    // Simple check to see if paragraph is a "header" (starts with number or is a name)
+                                    // This is a quick way to format the text better without changing data structure
+                                    const isHeader = p.match(/^[一二三四]、/) || p.includes('老師');
+                                    return <p key={i} className={`mb-4 ${isHeader ? 'font-bold text-amber-900 text-xl mt-8' : ''}`}>{p}</p>;
+                                })}
                             </div>
                         </div>
                     )}
@@ -631,7 +714,7 @@
                                              <img 
                                                 src={imgSrc} 
                                                 alt={`Dome Photo ${idx+1}`} 
-                                                className="w-full h-48 md:h-64 object-cover"
+                                                className="w-full h-32 md:h-56 object-cover"
                                                 onError={(e) => {
                                                     // Fallback just in case
                                                     e.target.onerror = null; 
@@ -642,7 +725,7 @@
                                     </div>
                                 ))}
                             </div>
-                            <div className="prose prose-stone max-w-none text-lg leading-relaxed text-stone-700">
+                            <div className="prose prose-stone max-w-none text-lg leading-relaxed text-stone-700 bg-stone-50 p-6 rounded-lg border-l-4 border-amber-700">
                                 <p>{data.body}</p>
                             </div>
                         </div>
@@ -692,7 +775,7 @@
                                 {data.isVR && (
                                     <button 
                                         onClick={() => window.open(data.vrLink || 'https://www.youtube.com/watch?v=GI7kO9PtB1k', '_blank')}
-                                        className="flex items-center justify-center gap-2 bg-indigo-600 text-white py-3 px-6 rounded-lg hover:bg-indigo-700 transition shadow-lg"
+                                        className="flex items-center justify-center gap-2 bg-indigo-600 text-white py-3 px-6 rounded-lg hover:bg-indigo-700 transition shadow-lg transform hover:-translate-y-1"
                                     >
                                         <i data-lucide="glasses"></i>
                                         啟動 VR 體驗模式
@@ -706,10 +789,10 @@
                         <div>
                             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 mb-12">
                                 {data.images.map((img, i) => (
-                                    <div key={i} className="group relative overflow-hidden rounded-xl shadow-md cursor-pointer">
+                                    <div key={i} className="group relative overflow-hidden rounded-xl shadow-md cursor-pointer bg-stone-200">
                                         <img src={img.src} alt={img.desc} className="w-full h-64 object-cover transition duration-500 group-hover:scale-110" />
-                                        <div className="absolute inset-0 bg-gradient-to-t from-black/70 to-transparent flex items-end p-4">
-                                            <p className="text-white font-medium">{img.desc}</p>
+                                        <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-end p-4">
+                                            <p className="text-white font-medium border-l-4 border-amber-500 pl-2">{img.desc}</p>
                                         </div>
                                     </div>
                                 ))}
@@ -721,7 +804,10 @@
                                     <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
                                         {data.additionalContent.items.map((item, i) => (
                                             <div key={i} className="bg-white p-6 rounded-lg shadow-sm border border-stone-100 hover:shadow-md transition">
-                                                <h4 className="font-bold text-lg text-amber-800 mb-3 border-b border-amber-100 pb-2">{item.author}</h4>
+                                                <h4 className="font-bold text-lg text-amber-800 mb-3 border-b border-amber-100 pb-2 flex items-center gap-2">
+                                                    <i data-lucide="pen-tool" className="w-4 h-4 text-amber-600"></i>
+                                                    {item.author}
+                                                </h4>
                                                 <p className="text-stone-600 leading-relaxed text-sm text-justify">{item.text}</p>
                                             </div>
                                         ))}
@@ -774,10 +860,6 @@
             const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
             const [visitCount, setVisitCount] = useState(1520);
 
-            useEffect(() => {
-                lucide.createIcons();
-            });
-
             // Effect for counting visits
             useEffect(() => {
                 const storedCount = localStorage.getItem('renaissance_visit_count');
@@ -785,10 +867,13 @@
                 let newCount = storedCount ? parseInt(storedCount, 10) + 1 : 1520;
                 setVisitCount(newCount);
                 localStorage.setItem('renaissance_visit_count', newCount);
+                
+                // Init icons
+                if (window.lucide) window.lucide.createIcons();
             }, []);
 
             useEffect(() => {
-                lucide.createIcons();
+                if (window.lucide) window.lucide.createIcons();
             }, [activeId, activeSubId, expandedMenu, mobileMenuOpen]);
 
             const handleMenuClick = (item) => {
@@ -827,23 +912,27 @@
             }
 
             return (
-                <div className="min-h-screen flex flex-col md:flex-row">
+                <div className="flex flex-col md:flex-row h-screen overflow-hidden">
                     
                     {/* Mobile Header */}
-                    <div className="md:hidden bg-amber-800 text-white p-4 flex justify-between items-center sticky top-0 z-50 shadow-md">
-                        <span className="font-bold text-xl serif-font">遊於藝～文藝復興在中正</span>
+                    <div className="md:hidden bg-amber-900 text-white p-4 flex justify-between items-center z-50 shadow-md">
+                        <span className="font-bold text-xl serif-font flex items-center gap-2">
+                             <i data-lucide="feather" className="w-5 h-5"></i>
+                             遊於藝
+                        </span>
                         <button onClick={() => setMobileMenuOpen(!mobileMenuOpen)}>
-                            <i data-lucide="menu"></i>
+                            <i data-lucide={mobileMenuOpen ? "x" : "menu"}></i>
                         </button>
                     </div>
 
                     {/* Sidebar / Navigation */}
                     <nav className={`
                         fixed inset-0 z-40 bg-stone-100 transform transition-transform duration-300 ease-in-out
-                        md:relative md:translate-x-0 md:w-80 md:block border-r border-amber-200 overflow-y-auto
-                        ${mobileMenuOpen ? 'translate-x-0 pt-16' : '-translate-x-full md:pt-0'}
+                        md:relative md:translate-x-0 md:w-80 md:block border-r border-amber-200
+                        ${mobileMenuOpen ? 'translate-x-0 top-14' : '-translate-x-full md:top-0'}
+                        flex flex-col
                     `}>
-                        <div className="p-6">
+                        <div className="p-6 flex-1 overflow-y-auto">
                             <h1 className="hidden md:block text-2xl font-bold text-amber-900 mb-8 serif-font border-b-2 border-amber-800 pb-4">
                                 遊於藝<br/>
                                 <span className="text-lg font-normal text-amber-700">文藝復興在中正</span>
@@ -862,25 +951,29 @@
                                     />
                                 ))}
                             </div>
+                        </div>
 
-                            {/* Visitor Counter */}
-                            <div className="mt-8 pt-6 border-t border-amber-200 text-center">
-                                <p className="text-stone-500 text-xs mb-2">累計參觀人次</p>
-                                <div className="inline-block bg-stone-800 text-amber-100 px-4 py-2 rounded font-mono text-lg shadow-inner tracking-widest border border-amber-600">
-                                    {visitCount.toLocaleString()}
-                                </div>
+                        {/* Visitor Counter */}
+                        <div className="p-6 bg-stone-200 border-t border-amber-200 text-center">
+                            <p className="text-stone-500 text-xs mb-2 uppercase tracking-wider">Visitor Count</p>
+                            <div className="inline-block bg-stone-800 text-amber-100 px-4 py-2 rounded font-mono text-lg shadow-inner tracking-widest border border-amber-600">
+                                {visitCount.toLocaleString()}
                             </div>
                         </div>
                     </nav>
 
                     {/* Main Content Area */}
-                    <main className="flex-1 p-6 md:p-10 bg-[#f7f5f0] overflow-y-auto h-screen">
-                        <ContentDisplay data={displayContent} />
+                    <main className="flex-1 bg-[#f7f5f0] overflow-y-auto relative w-full">
+                        {/* Decorative Background Element */}
+                        <div className="absolute top-0 right-0 w-64 h-64 bg-amber-500 opacity-5 rounded-bl-full pointer-events-none"></div>
                         
-                        {/* Footer */}
-                        <div className="mt-12 pt-8 border-t border-stone-300 text-center text-stone-500 text-sm">
-                            <p>© 2025 新北市中正國民中學 | 藝術與人文領域 | 網頁設計：C.Kuo | 版本：Ver1.7 2026.1.5</p>
+                        <div className="p-6 md:p-10 min-h-full flex flex-col">
+                            <ContentDisplay data={displayContent} />
                             
+                            {/* Footer */}
+                            <div className="mt-auto pt-12 border-t border-stone-300 text-center text-stone-500 text-sm">
+                                <p>© 2025 新北市中正國民中學 | 藝術與人文領域 | 網頁設計：C.Kuo | 版本：Ver1.8 2026.1.5</p>
+                            </div>
                         </div>
                     </main>
 
@@ -900,7 +993,3 @@
     </script>
 </body>
 </html>
-
-
-
-
