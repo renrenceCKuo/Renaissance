@@ -814,7 +814,7 @@
                     
                     {data.type === 'text' && (
                         <div className="bg-white p-6 rounded-xl shadow-sm border border-stone-100">
-                            {data.image && <img src={data.image} alt={data.title} className="w-full h-64 md:h-96 object-cover rounded-lg mb-6 shadow-md" 
+                            {data.image && <img src={data.image} alt={data.title} className="max-w-full h-auto max-h-[600px] mx-auto rounded-lg mb-6 shadow-md block" 
                              onError={(e) => {
                                         // Fallback just in case
                                         e.target.onerror = null; 
@@ -1112,7 +1112,7 @@
                             
                             {/* Footer */}
                             <div className="mt-auto pt-12 border-t border-stone-300 text-center text-stone-500 text-sm">
-                                <p>© 2025 新北市中正國民中學 | 藝術與人文領域 | 網頁設計：C.Kuo | 版本：Ver1.14 2026.1.23</p>
+                                <p>© 2025 新北市中正國民中學 | 藝術與人文領域 | 網頁設計：C.Kuo | 版本：Ver1.13 2026.1.22</p>
                             </div>
                         </div>
                     </main>
