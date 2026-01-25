@@ -125,11 +125,27 @@
             },
             {
                 id: 'guide',
-                title: '名畫導覽( 施工中 )',
+                title: '名畫導覽',
                 icon: 'Palette',
                 content: {
-                    title: '文藝復興名畫導覽',
+                    title: '走進翡冷翠！中正國中「穹頂玩藝」教育特展：科技與藝術的跨世紀對話',
                     type: 'gallery',
+                    description: [
+                        '2025年12月19日起至12月31日，新北市立中正國中藝文中心迎來一場震撼感官的藝術盛宴——「穹頂玩藝～文藝復興特展」。源於廣達《游於藝》計畫，展現了校方深耕美感教育的雄厚實力。校方發揮巧思，將原本平凡的地下室空間化腐朽為神奇，打造為專業級藝廊，帶領師生穿越時空，在校園內重現文藝復興的黃金年代。',
+                        '復刻聖母百花大教堂：幾何數學與建築力學的交織',
+                        '本次特展的核心亮點，是一座由師生合力組裝的「沉浸式劇場穹頂」。參與團隊透過精密的幾何運算與三角形紙板結構，手工復刻了建築大師布魯內萊斯基的代表作——「聖母百花大教堂」穹頂。',
+                        '這座直徑4公尺、高3公尺的紙板圓頂，不僅是建築學與幾何學的實踐結晶，內部更搭載了360度全景投影技術。當《末日審判》壁畫投射在圓頂內側時，參與者宛如置身於義大利翡冷翠現場，近距離感受文藝復興藝術的強烈張力與視覺震撼。',
+                        '這座紙板組裝的穹頂，猶如一台運轉中的時光機。雖然外殼是現代材料，但當影像與創意啟動，它便能帶領師生跨越數百年，直接與歷史大師進行心靈對談，點燃校園內的藝術火種。',
+                        '最後晚餐的行動藝術：學生化身文藝復興大師',
+                        '除了靜態觀賞，展覽更融入創新教育思維。學生們在環景拍攝區進行腳本創作，親身扮演達文西名作《最後的晚餐》中的角色。從定格演出到進入穹頂劇場觀賞自己的作品，學生不僅是觀看者，更化身為創作的一部分。這種從「欣賞」到「參與」的轉變，完美實踐了「跨世紀共創」的教學理念。',
+                        '新興科技跨領域整合：虛實交錯的藝術體驗',
+                        '身為自造暨科技中心，中正國中充分發揮優勢，將5G、AR（擴增實境）及VR（虛擬實境）深度融入教學。在VR體驗區，學生只需戴上頭盔，便能瞬間穿越至法國巴黎羅浮宮，近距離駐足欣賞達文西鎮館之寶《蒙娜麗莎的微笑》。更有趣的是透過AR技術應用，學生拿起手機自拍，竟能瞬間「變身」為畫中主角，體驗成為蒙娜麗莎的獨特趣味。這場特展不僅是藝術呈現，更是一場求知、求真與求美的跨領域探索之旅，成功開創了智慧教育的新典範。',
+                        '導覽尖兵經典巡禮：深耕校園美感基因',
+                        '在導覽小尖兵的帶領下，師生逐一領略文藝復興時期的經典傑作，包含：',
+                        ' 達文西：《蒙娜麗莎的微笑》、《最後的晚餐》。',
+                        ' 拉斐爾： 展現理性思辨巔峰的《雅典學院》。',
+                        ' 米開朗基羅： 剛勁與慈悲並具的雕塑《聖殤》、《大衛像》，以及宏偉的《創世紀》。'
+                    ],
                     images: [
                         { src: 'https://upload.wikimedia.org/wikipedia/commons/thumb/0/0b/Sandro_Botticelli_-_La_nascita_di_Venere_-_Google_Art_Project_-_edited.jpg/1200px-Sandro_Botticelli_-_La_nascita_di_Venere_-_Google_Art_Project_-_edited.jpg', desc: '維納斯的誕生 - 波提切利' },
                         { src: 'https://upload.wikimedia.org/wikipedia/commons/thumb/1/11/Michelangelo_-_Creation_of_Adam_%28cropped%29.jpg/1200px-Michelangelo_-_Creation_of_Adam_%28cropped%29.jpg', desc: '創世紀 - 米開朗基羅' },
@@ -224,7 +240,7 @@
                     },
                     {
                         id: 'supper-students',
-                        title: '學生的戲劇錄影及照片(施工中)',
+                        title: '學生的戲劇錄影及照片',
                         content: {
                             title: '學生演繹：誰是背叛者？',
                             type: 'video-grid',
@@ -481,7 +497,7 @@
                     },
                     {
                         id: 'feedback-videos',
-                        title: '師生訪談影音(施工中)',
+                        title: '師生訪談影音',
                         content: {
                             title: '活動回饋與分享 - 影音紀錄',
                             type: 'video-grid',
@@ -966,6 +982,36 @@
 
                     {data.type === 'gallery' && (
                         <div>
+                            {/* New Description Section for Gallery */}
+                            {data.description && (
+                                <div className="bg-white p-6 rounded-xl shadow-sm border border-stone-100 mb-8">
+                                    <div className="prose prose-stone max-w-none text-lg leading-relaxed text-stone-700">
+                                        {data.description.map((p, i) => {
+                                            // Check for Headers (contains colon and specific keywords or structure)
+                                            const isHeader = p.includes('：') && (p.includes('復刻') || p.includes('最後晚餐') || p.includes('新興科技') || p.includes('導覽尖兵'));
+                                            
+                                            // Check for List Items
+                                            const isListItem = p.trim().startsWith('達文西') || p.trim().startsWith('拉斐爾') || p.trim().startsWith('米開朗基羅');
+
+                                            if (isHeader) {
+                                                return <h3 key={i} className="text-xl font-bold text-amber-800 mt-8 mb-4 border-l-4 border-amber-600 pl-3 serif-font">{p}</h3>;
+                                            }
+                                            
+                                            if (isListItem) {
+                                                return (
+                                                    <div key={i} className="flex items-start gap-2 ml-4 mb-2">
+                                                        <span className="text-amber-600 mt-1.5">•</span>
+                                                        <p className="m-0">{p.trim()}</p>
+                                                    </div>
+                                                );
+                                            }
+                                            
+                                            return <p key={i} className="mb-4">{p}</p>;
+                                        })}
+                                    </div>
+                                </div>
+                            )}
+
                             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 mb-12">
                                 {data.images.map((img, i) => (
                                     <div key={i} className="group relative overflow-hidden rounded-xl shadow-md cursor-pointer bg-stone-200">
@@ -1178,9 +1224,3 @@
     </script>
 </body>
 </html>
-
-
-
-
-
-
