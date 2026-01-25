@@ -193,8 +193,18 @@
                             title: '透視法的巔峰：最後的晚餐',
                             type: 'text',
                             body: [
-                                '達文西的這幅壁畫位於米蘭感恩聖母堂。他巧妙地利用單點透視法，將消失點集中在耶穌的右眼，讓所有視線都聚焦於主角。',
-                                '畫作捕捉了耶穌說出「你們之中有人要出賣我」的那一瞬間，十二門徒驚訝、恐慌、懷疑的表情栩栩如生。'
+                                '達文西（Leonardo da Vinci）〈最後的晚餐〉',
+                                '它畫在義大利米蘭的一間修道院牆上，完成於15世紀末，是文藝復興的經典傑作之一。',
+                                '故事背景：',
+                                '這幅畫描繪的是《聖經》裡的一幕〈耶穌在被捕之前，和十二個門徒共進最後一餐〉。就在這個時刻，耶穌說了一句話：「你們當中，有一個人要出賣我。」全場氣氛瞬間緊張起來。達文西選擇的，就是這一刻－震驚爆發的瞬間。',
+                                '觀察畫面人物：',
+                                '大家看，耶穌坐在中間，他的身體形成一個安靜的三角形，象徵穩定與神性。而他的兩側十二位門徒，全都反應不一，有人驚訝、有人憤怒、有人低頭沉思。',
+                                '問學生：你能找出哪一位可能是「出賣他的人」嗎？',
+                                '（ 學生會觀察猶大低著頭、手拿著錢袋、身體微微後退）沒錯，那就是「猶大」！他被安排在同一張桌子上，但微妙地退了一步，象徵他「表面同席、內心疏離」。',
+                                '透視與構圖的魔法：',
+                                '接下來，我們看整個空間。是不是覺得每個人、每條線、甚至牆壁的角度，都好整齊？這是達文西運用的 「線性透視法」。所有的透視線都指向耶穌的頭部。這樣一來，觀眾的視線自然被引導到中心，即使場面混亂，焦點依然清楚。',
+                                '問學生：如果你是導演，要讓觀眾一眼看出主角，你會怎麼安排畫面？',
+                                '（引導學生理解構圖與導向視線的設計）'
                             ],
                             image: 'https://upload.wikimedia.org/wikipedia/commons/thumb/4/4b/%C3%9Altima_Cena_-_Da_Vinci_5.jpg/1280px-%C3%9Altima_Cena_-_Da_Vinci_5.jpg'
                         }
@@ -824,10 +834,45 @@
                             />}
                             <div className="prose prose-stone max-w-none text-lg leading-relaxed text-stone-700">
                                 {data.body.map((p, i) => {
-                                    // Simple check to see if paragraph is a "header" (starts with number or is a name)
-                                    // This is a quick way to format the text better without changing data structure
-                                    const isHeader = p.match(/^[一二三四]、/) || p.includes('老師');
-                                    return <p key={i} className={`mb-4 ${isHeader ? 'font-bold text-amber-900 text-xl mt-8' : ''}`}>{p}</p>;
+                                    // Advanced Text Styling for Renaissance Vibe
+                                    
+                                    // 1. Headers (Ends with colon, or specific keywords)
+                                    const isHeader = p.match(/^[一二三四]、/) || p.endsWith('：') || p.includes('老師') || p === '達文西（Leonardo da Vinci）〈最後的晚餐〉';
+                                    
+                                    // 2. Questions (Interaction Box)
+                                    const isQuestion = p.startsWith('問學生');
+
+                                    // 3. Notes/Answers (Starts with parentheses)
+                                    const isNote = p.startsWith('（');
+
+                                    if (isHeader) {
+                                        return (
+                                            <h3 key={i} className="text-2xl font-bold text-amber-900 mt-8 mb-4 serif-font border-b border-amber-200 pb-2 flex items-center gap-2">
+                                                <i data-lucide="feather" className="w-5 h-5 text-amber-600"></i>
+                                                {p}
+                                            </h3>
+                                        );
+                                    }
+
+                                    if (isQuestion) {
+                                        return (
+                                            <div key={i} className="bg-amber-50 p-5 rounded-lg border-2 border-amber-100 my-6 shadow-sm relative overflow-hidden">
+                                                <div className="absolute top-0 right-0 p-4 opacity-10">
+                                                    <i data-lucide="help-circle" className="w-24 h-24 text-amber-900"></i>
+                                                </div>
+                                                <div className="relative z-10 flex gap-3">
+                                                    <span className="font-bold text-amber-800 flex-shrink-0 bg-amber-200 px-2 py-1 rounded text-sm h-fit mt-1">互動提問</span>
+                                                    <p className="font-medium text-amber-900 italic text-lg m-0">{p.replace('問學生：', '')}</p>
+                                                </div>
+                                            </div>
+                                        );
+                                    }
+
+                                    if (isNote) {
+                                        return <p key={i} className="mb-4 text-stone-500 text-base pl-4 border-l-2 border-stone-300 italic">{p}</p>;
+                                    }
+
+                                    return <p key={i} className="mb-4">{p}</p>;
                                 })}
                             </div>
                         </div>
